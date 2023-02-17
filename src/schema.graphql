@@ -1,0 +1,26 @@
+type User {
+  id: Int!
+  name: String!
+  balance: Float!
+}
+
+type Bet {
+  id: Int!
+  userId: Int!
+  betAmount: Float!
+  chance: Float!
+  payout: Float!
+  win: Boolean!
+}
+
+type Query {
+  getUser(id: Int): User
+  getUserList: [User!] # just return all
+  getBet(id: Int): Bet
+  getBetList: [Bet!] # just return all bets
+  getBestBetPerUser(limit: Int): [Bet!] # return a distinct list of the best bet each user has made. Allow limiting the result set
+}
+
+type Mutation {
+  createBet(userId: Int!, betAmount: Float!, chance: Float!): Bet # Can be Math.random()
+}
